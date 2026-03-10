@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Calculator</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1c92d2);
+background-size:400% 400%;
+animation:gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.calculator{
+background:rgba(0,0,0,0.6);
+padding:20px;
+border-radius:15px;
+backdrop-filter:blur(10px);
+width:320px;
+}
+
+#display{
+width:100%;
+height:60px;
+font-size:26px;
+text-align:right;
+padding:10px;
+border:none;
+border-radius:10px;
+margin-bottom:15px;
+background:#000;
+color:#0ff;
+}
+
+.buttons{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+button{
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#111;
+color:#0ff;
+box-shadow:0 0 5px #0ff,0 0 10px #0ff;
+transition:0.2s;
+}
+
+button:hover{
+box-shadow:0 0 10px #0ff,0 0 20px #0ff;
+transform:scale(1.05);
+}
+
+.equal{
+background:#00ff88;
+color:black;
+box-shadow:0 0 10px #00ff88,0 0 20px #00ff88;
+}
+
+.clear{
+background:#ff4d4d;
+color:white;
+box-shadow:0 0 10px #ff4d4d,0 0 20px #ff4d4d;
+}
+
+@media(max-width:400px){
+.calculator{
+width:95%;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+<input type="text" id="display" readonly>
+
+<div class="buttons">
+
+<button class="clear" onclick="clearDisplay()">C</button>
+<button onclick="del()">DEL</button>
+<button onclick="append('/')">÷</button>
+<button onclick="append('*')">×</button>
+
+<button onclick="append('7')">7</button>
+<button onclick="append('8')">8</button>
+<button onclick="append('9')">9</button>
+<button onclick="append('-')">−</button>
+
+<button onclick="append('4')">4</button>
+<button onclick="append('5')">5</button>
+<button onclick="append('6')">6</button>
+<button onclick="append('+')">+</button>
+
+<button onclick="append('1')">1</button>
+<button onclick="append('2')">2</button>
+<button onclick="append('3')">3</button>
+<button class="equal" onclick="calculate()">=</button>
+
+<button onclick="append('0')" style="grid-column:span 2;">0</button>
+<button onclick="append('.')">.</button>
+
+</div>
+
+</div>
+
+<script>
+
+let display = document.getElementById("display");
+
+function append(value){
+display.value += value;
+}
+
+function clearDisplay(){
+display.value="";
+}
+
+function del(){
+display.value = display.value.slice(0,-1);
+}
+
+function calculate(){
+try{
+display.value = eval(display.value);
+}catch{
+display.value="Error";
+}
+}
+
+/* Keyboard Support */
+
+document.addEventListener("keydown",function(e){
+
+if(!isNaN(e.key) || "+-*/.".includes(e.key)){
+display.value += e.key;
+}
+
+if(e.key==="Enter"){
+calculate();
+}
+
+if(e.key==="Backspace"){
+del();
+}
+
+if(e.key==="Escape"){
+clearDisplay();
+}
+
+});
+
+</script>
+
+</body>
+</html>
