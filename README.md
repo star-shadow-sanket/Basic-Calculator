@@ -68,7 +68,7 @@ The calculator interface includes:
 B.Tech Computer Science & Engineering
 B. P. Poddar Institute of Management and Technology
 
-📧 Email: [ghoshsanket98766543217@gmail.com](mailto:ghoshsanket9876654321@gmail.com)
+📧 Email: [ghoshsanket9876654321@gmail.com](mailto:ghoshsanket9876654321@gmail.com)
 
 ---
 
